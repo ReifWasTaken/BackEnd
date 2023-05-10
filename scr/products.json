@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "title": "potato",
+    "description": "poh tay toes",
+    "price": 12,
+    "thumbnail": "https://media.tenor.com/KDskB0xTY9IAAAAC/potatoes-lotr.gif",
+    "code": "a01",
+    "stock": 2000,
+    "category": "food",
+    "status": true
+  },
+  {
+    "id": 2,
+    "title": "gimli's axe",
+    "description": "the migthy axe of a drwaf",
+    "price": 4000,
+    "thumbnail": "https://iloveswords.com/images/LOTR/MDL_gimli.jpg",
+    "code": "a02",
+    "stock": 24,
+    "category": "weapons"
+  },
+  {
+    "id": 3,
+    "title": "eowyn's stew",
+    "description": "It's food.. but not a good one",
+    "price": 30,
+    "thumbnail": "https://preview.redd.it/huj0pn5eftaz.gif?format=png8&s=b6f4bc572aa539489ab8642dc4a81f2398eabd24",
+    "code": "a00",
+    "stock": 1,
+    "category": "food"
+  },
+  {
+    "id": 4,
+    "title": "sting",
+    "description": "bilbo's sword",
+    "price": 30,
+    "thumbnail": "https://theknightsvault.com/wp-content/uploads/2017/11/Sting-600x840.jpg",
+    "code": "a03",
+    "stock": 1,
+    "category": "weapons",
+    "status": true
+  }
+]
