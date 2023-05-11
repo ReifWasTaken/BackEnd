@@ -56,6 +56,7 @@ cartsRouter.post("/:cid/product/:pid", async (req, res)=>{
         const solicitedProductID = req.params.pid;
         const productFound = await productManager.getProductById(parseInt(solicitedProductID));
         
+
         if(cartFound && productFound){
            await cartManager.updateCart(cartFound.id, productFound.id);
 

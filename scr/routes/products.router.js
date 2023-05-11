@@ -39,11 +39,12 @@ productsRouter.post("/", async (req, res)=>{
   const allProducts = await productManager.getProducts();
   const newProduct =  req.body;
     
-  const serchCode = allProducts.find((prod) => prod.code === newProduct.code)
+  const serchCode = allProducts.find((prod) => prod.code === newProduct.code);
+
     if(serchCode){
       return res.status(400).json({
         status: "error",
-        msg: "cant add a product with the same id"
+        msg: "add an ID is forviden"
       });
     }
 
