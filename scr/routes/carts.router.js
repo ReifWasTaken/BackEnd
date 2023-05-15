@@ -75,4 +75,24 @@ cartsRouter.post("/:cid/product/:pid", async (req, res)=>{
           });
     }
 });
+
+cartsRouter.get("/:cid/test", async (req, res)=>{
+  try{
+      const solicitedID = req.params.cid;
+      const cartFound = await cartManager.getCartById(parseInt(solicitedID));
+
+        if(cartFound){
+         
+          return res.status(201).render("carts", cartFound);
+        }
+    
+      }
+      catch{
+        return  res.status(404).json({
+          status: "error",
+          msg: "Cart does not exist",
+        });
+      }
+  
+})
 export {cartsRouter};

@@ -158,4 +158,24 @@ productsRouter.delete("/:pid", async (req, res)=> {
   }
 })
 
+productsRouter.get("/:pid/test", async (req, res) => {
+  try{
+  const solicitedID = req.params.pid; 
+  const productFound = await productManager.getProductById(parseInt(solicitedID));
+
+  if(productFound){     
+    return res.status(200).render("products", productFound);
+
+}
+  }
+
+catch(err){   
+  return  res.status(404).json({
+    status: "error",
+    msg: "Product does not exist",
+  });
+}
+
+});
+
 export {productsRouter};
