@@ -5,8 +5,8 @@ const productManager = new classProducts();
 
 
 productsRouter.get("/", async (req, res) => {
+  try{
     const limit = req.query.limit;
-try{
   const products = await productManager.getProducts();
   
   if(limit){

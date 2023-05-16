@@ -1,9 +1,11 @@
 import express from "express"
 import { productsRouter }  from "./routes/products.router.js"
 import { cartsRouter } from "./routes/carts.router.js";
+import { socketsRouter } from "./routes/sockets.router.js"
 import path from "path";
 import handlebars from "express-handlebars";
 import { __dirname } from "./utils.js";
+import { Server } from "socket.io";
 
 const app = express();
 const port = 8080;
@@ -20,9 +22,17 @@ app.set("view engine", "handlebars");
 app.use("/api/products", productsRouter);
 app.use("/api/carts", cartsRouter);
 
-app.listen(port, () => {
+app.use("/sockets", socketsRouter);
+
+const httpServer = app.listen(port, () => {
   console.log(`app listening from http://localhost:${port}/api/products`)
 });
+
+const socketServer = new Server(httpServer);
+
+socketServer.on("connection", (socket)=>{
+  console.log("socket conected to " + socket.id);
+})
 
 app.get("*", (req, res)=>{
 

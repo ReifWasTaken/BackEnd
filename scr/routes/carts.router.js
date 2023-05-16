@@ -55,6 +55,19 @@ cartsRouter.post("/:cid/product/:pid", async (req, res)=>{
 
         const solicitedProductID = req.params.pid;
         const productFound = await productManager.getProductById(parseInt(solicitedProductID));
+
+        if(!cartFound){
+          return res.status(404).json({
+            status: "error",
+            msg: "Cart not found",
+          })
+        }
+        if(!productFound){
+          return res.status(404).json({
+            status: "error",
+            msg: "product not found",
+          })
+        }
         
 
         if(cartFound && productFound){
