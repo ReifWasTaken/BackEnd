@@ -50,19 +50,25 @@ cartsRouter.get("/:cid", async (req, res)=>{
 
 cartsRouter.post("/:cid/product/:pid", async (req, res)=>{
     try{
-        const solicitedCartID = req.params.cid;
-        const cartFound = await cartManager.getCartById(parseInt(solicitedCartID));
+      const cartFound = await cartManager.getCart();
+      const productFound = await productManager.getProducts();
+      
+      
+        const solicitedCartID = parseInt(req.params.cid);
+        const solicitedProductID = parseInt(req.params.pid);
 
-        const solicitedProductID = req.params.pid;
-        const productFound = await productManager.getProductById(parseInt(solicitedProductID));
-
-        if(!cartFound){
+        const carrito = cartFound.find(e => e.id === solicitedCartID)
+        
+        if(!carrito){
           return res.status(404).json({
             status: "error",
             msg: "Cart not found",
           })
         }
-        if(!productFound){
+
+        const producto = productFound.find(e => e.id === solicitedProductID)
+        
+        if(!producto){
           return res.status(404).json({
             status: "error",
             msg: "product not found",
@@ -70,13 +76,13 @@ cartsRouter.post("/:cid/product/:pid", async (req, res)=>{
         }
         
 
-        if(cartFound && productFound){
-           await cartManager.updateCart(cartFound.id, productFound.id);
+        if(carrito && producto){
+           await cartManager.updateCart(carrito.id, producto.id);
 
             return res.status(201).json({
                 status: "success",
                 msg: "cart updated",
-                data: cartFound,
+                data: carrito,
             })
         }
 
