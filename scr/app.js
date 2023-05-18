@@ -28,7 +28,7 @@ app.use("/realtimeproducts", realTimeProductsRouter);
 app.use("/", homesRouter)
 
 const httpServer = app.listen(port, () => {
-  console.log(`app listening from http://localhost:${port}/home`)
+  console.log(`app listening from http://localhost:${port}/`)
 });
 
 const socketServer = new Server(httpServer);
