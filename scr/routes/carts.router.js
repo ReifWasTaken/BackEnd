@@ -57,7 +57,7 @@ cartsRouter.post("/:cid/product/:pid", async (req, res)=>{
         const solicitedCartID = parseInt(req.params.cid);
         const solicitedProductID = parseInt(req.params.pid);
 
-        const carrito = cartFound.find(e => e.id === solicitedCartID)
+        const carrito = cartFound.find(e => e.id === solicitedCartID);
         
         if(!carrito){
           return res.status(404).json({
@@ -66,7 +66,7 @@ cartsRouter.post("/:cid/product/:pid", async (req, res)=>{
           })
         }
 
-        const producto = productFound.find(e => e.id === solicitedProductID)
+        const producto = productFound.find(e => e.id === solicitedProductID);
         
         if(!producto){
           return res.status(404).json({

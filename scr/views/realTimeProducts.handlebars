@@ -1,0 +1,53 @@
+<form id="formu" class = "formulario" action="index.js" method="post">
+    <div class="itemForm">
+        <label for="imputText">title</label>
+        <input id="title" type="text" />
+    </div>
+    <div class="itemForm">
+        <label for="imputText">description</label>
+        <input id="description" type="text" />
+    </div>
+    <div idclass="itemForm">
+        <label for="imputText">price</label>
+        <input ="price" type="text" />
+    </div>
+    <div class="itemForm">
+        <label for="imputText">thumbnail</label>
+        <input id="thumbnail" type="text" />
+    </div>
+    <div class="itemForm">
+        <label for="imputText">code</label>
+        <input id="code" type="text" />
+    </div>
+    <div  class="itemForm">
+        <label for="imputText">stock</label>
+        <input id="stock"type="text" />
+    </div>
+    <div class="itemForm">
+        <label for="inputState">Select a category</label>
+        <select name="asdad" id="category">
+            <option value="weapons">weapons</option>
+            <option value="food">food</option>
+        </select>
+    </div>
+
+    <div>
+        <input type="submit" value="Send">
+    </div>
+</form>
+
+<div>
+    {{#each products}}
+    <ul>
+        <h1>Product: {{{this.title}}}</h1>
+        <li>ID: {{this.id}}</li>
+        <li>description:{{this.description}}</li>
+        <li>price:{{this.price}}</li>
+        <li>thumbnail:{{this.thumbnail}}</li>
+        <li>stock{{this.stock}}</li>
+    </ul>
+    {{/each}}
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/index.js"></script>

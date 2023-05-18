@@ -1,12 +1,13 @@
 import express from "express"
 import { productsRouter }  from "./routes/products.router.js"
 import { cartsRouter } from "./routes/carts.router.js";
-import { socketsRouter } from "./routes/sockets.router.js"
+import { realTimeProductsRouter } from "./routes/realTimeProducts.router.js"
 import { homesRouter } from "./routes/homes.router.js"
 import path from "path";
 import handlebars from "express-handlebars";
 import { __dirname } from "./utils.js";
 import { Server } from "socket.io";
+import ProductManager from "./productManager.js";
 
 const app = express();
 const port = 8080;
@@ -23,18 +24,31 @@ app.set("view engine", "handlebars");
 app.use("/api/products", productsRouter);
 app.use("/api/carts", cartsRouter);
 
-app.use("/sockets", socketsRouter);
-app.use("/home", homesRouter)
+app.use("/realtimeproducts", realTimeProductsRouter);
+app.use("/", homesRouter)
 
 const httpServer = app.listen(port, () => {
-  console.log(`app listening from http://localhost:${port}/api/products`)
+  console.log(`app listening from http://localhost:${port}/home`)
 });
 
 const socketServer = new Server(httpServer);
 
+const product = new ProductManager();
+
 socketServer.on("connection", (socket)=>{
   console.log("socket conected to " + socket.id);
-})
+
+  socket.on("new_product", async (data)=>{
+    await product.addProduct(data);
+  });
+
+    socket.emit("msg_back_to_front", {
+      //enviaria la data al front
+    });
+
+
+
+});
 
 app.get("*", (req, res)=>{
 

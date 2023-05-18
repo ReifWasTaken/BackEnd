@@ -7,3 +7,14 @@ ul li {
     background-color: rgba(245, 245, 245, 0.959);
     border: 0.3rem solid whitesmoke;
     border-radius: 2rem; }
+
+form {
+    display: inline-block;
+    text-transform: uppercase;
+}
+
+form .itemForm{
+    display: block;
+    margin: 0.8em;
+    padding: 0.3em;
+}
