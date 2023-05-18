@@ -40,5 +40,15 @@
     "stock": 1,
     "category": "weapons",
     "status": true
+  },
+  {
+    "id": 5,
+    "title": "Legolas's Bow",
+    "description": "The bow of an elf",
+    "price": "12000",
+    "thumbnail": "https://www.outfit4events.com/runtime/cache/images/redesignProductFull/uc3070-luk-legolas-hobbit.jpg",
+    "code": "a04",
+    "category": "weapons",
+    "stock": "5"
   }
 ]

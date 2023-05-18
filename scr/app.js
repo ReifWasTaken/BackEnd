@@ -38,12 +38,12 @@ const product = new ProductManager();
 socketServer.on("connection", (socket)=>{
   console.log("socket conected to " + socket.id);
   
-  
   socket.on("new_product", async(data)=>{
       try{
-      await product.addProduct(data);
+      await product.addProduct({...data});
 
-      socketServer.emit("all_products", await product.getProducts());
+      const getProducts = await product.getProducts()
+      socketServer.emit("all_products", getProducts);
     }
     catch(err){
       res.status(404).json({

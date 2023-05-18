@@ -7,9 +7,9 @@
         <label for="imputText">description</label>
         <input id="description" type="text" />
     </div>
-    <div idclass="itemForm">
+    <div class="itemForm">
         <label for="imputText">price</label>
-        <input ="price" type="text" />
+        <input id="price" type="number" />
     </div>
     <div class="itemForm">
         <label for="imputText">thumbnail</label>
@@ -21,7 +21,7 @@
     </div>
     <div  class="itemForm">
         <label for="imputText">stock</label>
-        <input id="stock"type="text" />
+        <input id="stock"type="number" />
     </div>
     <div class="itemForm">
         <label for="inputState">Select a category</label>
@@ -48,6 +48,6 @@
     </ul>
     {{/each}}
 </div>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>
 <script src="/js/index.js"></script>

@@ -1,26 +1,26 @@
 const socket = io();
-const formu = document.getElementById(formu)
-const title = document.getElementById(title)
-const description = document.getElementById(description)
-const price = document.getElementById(price)
-const thumbnail = document.getElementById(thumbnail)
-const code = document.getElementById(code)
-const category = document.getElementById(category)
-const stock = document.getElementById(stock)
+const formu = document.getElementById("formu")
+const title = document.getElementById("title")
+const description = document.getElementById("description")
+const price = document.getElementById("price")
+const thumbnail = document.getElementById("thumbnail")
+const code = document.getElementById("code")
+const category = document.getElementById("category")
+const stock = document.getElementById("stock")
 
 socket.on("all_products", (data)=>{
-    const product = document.getElementById(product)
+    const product = document.getElementById("product")
 
     product.innerHTML =  `${data.map(e =>
         
     `
     <ul>
         <h1>Product: ${e.title}</h1>
-        <li>ID: ${this.id}</li>
-        <li>description:${this.description}</li>
-        <li>price:${this.price}</li>
-        <li>thumbnail:${this.thumbnail}</li>
-        <li>stock: ${this.stock}</li>
+        <li>ID: ${e.id}</li>
+        <li>description:${e.description}</li>
+        <li>price:${e.price}</li>
+        <li>thumbnail:${e.thumbnail}</li>
+        <li>stock: ${e.stock}</li>
     </ul>`
 
         ).join("")}`
