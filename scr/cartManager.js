@@ -87,16 +87,4 @@ class CartManagment{
 
 }
 
-   
-
-
-
-const cartManagment = new CartManagment();
-
-/* async function testCart(){
-    console.log(await cartManagment.newCart());
-};
-
-testCart(); */
-
 export default CartManagment;

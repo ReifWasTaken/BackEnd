@@ -1,4 +1,4 @@
-<form id="formu" class = "formulario" action="index.js" method="post">
+<form id="formu" class = "formulario">
     <div class="itemForm">
         <label for="imputText">title</label>
         <input id="title" type="text" />
@@ -36,7 +36,7 @@
     </div>
 </form>
 
-<div>
+<div id="product">
     {{#each products}}
     <ul>
         <h1>Product: {{{this.title}}}</h1>
@@ -44,7 +44,7 @@
         <li>description:{{this.description}}</li>
         <li>price:{{this.price}}</li>
         <li>thumbnail:{{this.thumbnail}}</li>
-        <li>stock{{this.stock}}</li>
+        <li>stock:{{this.stock}}</li>
     </ul>
     {{/each}}
 </div>

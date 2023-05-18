@@ -37,18 +37,22 @@ const product = new ProductManager();
 
 socketServer.on("connection", (socket)=>{
   console.log("socket conected to " + socket.id);
+  
+  
+  socket.on("new_product", async(data)=>{
+      try{
+      await product.addProduct(data);
 
-  socket.on("new_product", async (data)=>{
-    await product.addProduct(data);
-  });
-
-    socket.emit("msg_back_to_front", {
-      //enviaria la data al front
+      socketServer.emit("all_products", await product.getProducts());
+    }
+    catch(err){
+      res.status(404).json({
+        status: "error",
+        msg: "product cant be added",
+      });
+    }
     });
-
-
-
-});
+  });
 
 app.get("*", (req, res)=>{
 

@@ -153,25 +153,5 @@ const item3 = {
     stock: 1,
     category: "food",
 }
-const productManager = new ProductManager();
-
-/* async function productInteraction(){
-    
-    console.log(await productManager.addProduct(item));
-    console.log(await productManager.addProduct(item2));
-    console.log(await productManager.addProduct(item3));
-
-    console.log(await productManager.getProducts());
-
-    // console.log(await productManager.deleteProduct(2));  
-    console.log(await productManager.getProducts());
-
-    console.log(await productManager.getProductById(3));  
-    
-    console.log(await productManager.updateProduct(1, {price: 400}));
-    
-}
-productInteraction();  */
-
 
 export default ProductManager;

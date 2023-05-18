@@ -9,7 +9,21 @@ const category = document.getElementById(category)
 const stock = document.getElementById(stock)
 
 socket.on("all_products", (data)=>{
-    //aca recibe la data que se envia
+    const product = document.getElementById(product)
+
+    product.innerHTML =  `${data.map(e =>
+        
+    `
+    <ul>
+        <h1>Product: ${e.title}</h1>
+        <li>ID: ${this.id}</li>
+        <li>description:${this.description}</li>
+        <li>price:${this.price}</li>
+        <li>thumbnail:${this.thumbnail}</li>
+        <li>stock: ${this.stock}</li>
+    </ul>`
+
+        ).join("")}`
 });
 
 formu.addEventListener("submit", (e)=>{
@@ -25,4 +39,5 @@ formu.addEventListener("submit", (e)=>{
         stock: stock.value,
     }
     
+    socket.emit("new_product", newProduct);
 });
