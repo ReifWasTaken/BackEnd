@@ -5,6 +5,7 @@ class CartManagment{
     constructor(path){
     this.path = "./scr/cart.json";
 }
+
     async getCart(){
         try{
             if(fs.existsSync(this.path)){
@@ -29,7 +30,6 @@ class CartManagment{
                 data.push(cart);
                 const cartSting = JSON.stringify(data , null, 2)
                 await fs.promises.writeFile(this.path, cartSting);
-
 
                 return cart, "cart Created";
             }

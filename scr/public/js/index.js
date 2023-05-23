@@ -8,6 +8,11 @@ const code = document.getElementById("code")
 const category = document.getElementById("category")
 const stock = document.getElementById("stock")
 
+
+socket.on("error", (error)=> {
+    alert(error.msg)
+})
+
 socket.on("all_products", (data)=>{
     const product = document.getElementById("product")
 
@@ -21,6 +26,7 @@ socket.on("all_products", (data)=>{
         <li>price:${e.price}</li>
         <li>thumbnail:${e.thumbnail}</li>
         <li>stock: ${e.stock}</li>
+        <button id="delete" type="submit" onclick="deleteButton(${e.id})">X</button>
     </ul>`
 
         ).join("")}`
@@ -30,6 +36,7 @@ formu.addEventListener("submit", (e)=>{
     e.preventDefault();
 
     const newProduct = {
+        
         title: title.value,
         description: description.value,
         price: price.value,
@@ -38,6 +45,22 @@ formu.addEventListener("submit", (e)=>{
         category: category.value,
         stock: stock.value,
     }
-    
+
+    title.value = ""
+    description.value = ""
+    price.value = ""
+    thumbnail.value = ""
+    code.value = ""
+    category.value = ""
+    stock.value = ""
+
     socket.emit("new_product", newProduct);
 });
+
+     deleteButton = (IDProd)=> {
+
+        socket.emit("delete_product", IDProd);
+    }
+    
+
+

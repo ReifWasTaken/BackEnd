@@ -37,22 +37,40 @@ const product = new ProductManager();
 
 socketServer.on("connection", (socket)=>{
   console.log("socket conected to " + socket.id);
-  
+
   socket.on("new_product", async(data)=>{
       try{
-      await product.addProduct({...data});
+        let getProducts = await product.getProducts()
+      
+        let checkcode = getProducts.find(e => e.code === data.code)
 
-      const getProducts = await product.getProducts()
+        if(checkcode){
+          socketServer.emit("error", {msg: "code Allredy Exist"});
+        }
+        
+        await product.addProduct({...data});
+        getProducts = await product.getProducts()
       socketServer.emit("all_products", getProducts);
     }
     catch(err){
-      res.status(404).json({
-        status: "error",
-        msg: "product cant be added",
-      });
+      console.log("error");
     }
     });
-  });
+
+
+  socket.on("delete_product", async(data)=>{
+    try{
+      const id =  parseInt(data);
+      await product.deleteProduct(id);
+      
+      const getProduct = await product.getProducts();
+       socketServer.emit("all_products", getProduct);
+    }
+    catch(err){
+      console.log("error");
+    }
+  })
+ });
 
 app.get("*", (req, res)=>{
 

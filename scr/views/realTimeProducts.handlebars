@@ -1,27 +1,27 @@
 <form id="formu" class = "formulario">
     <div class="itemForm">
         <label for="imputText">title</label>
-        <input id="title" type="text" />
+        <input required id="title" type="text" />
     </div>
     <div class="itemForm">
         <label for="imputText">description</label>
-        <input id="description" type="text" />
+        <input required id="description" type="text" />
     </div>
     <div class="itemForm">
         <label for="imputText">price</label>
-        <input id="price" type="number" />
+        <input required id="price" type="number" />
     </div>
     <div class="itemForm">
         <label for="imputText">thumbnail</label>
-        <input id="thumbnail" type="text" />
+        <input required id="thumbnail" type="text" />
     </div>
     <div class="itemForm">
         <label for="imputText">code</label>
-        <input id="code" type="text" />
+        <input required id="code" type="text" />
     </div>
     <div  class="itemForm">
         <label for="imputText">stock</label>
-        <input id="stock"type="number" />
+        <input required id="stock"type="number" />
     </div>
     <div class="itemForm">
         <label for="inputState">Select a category</label>
@@ -36,15 +36,16 @@
     </div>
 </form>
 
-<div id="product">
+<div  id="product" >
     {{#each products}}
     <ul>
-        <h1>Product: {{{this.title}}}</h1>
+        <h1>Product: {{{this.title}}} </h1>
         <li>ID: {{this.id}}</li>
         <li>description:{{this.description}}</li>
         <li>price:{{this.price}}</li>
         <li>thumbnail:{{this.thumbnail}}</li>
         <li>stock:{{this.stock}}</li>
+        <button id="delete" type="submit" onclick="deleteButton({{this.id}})">X</button>
     </ul>
     {{/each}}
 </div>
