@@ -120,7 +120,7 @@ productsRouter.put("/:pid", async (req, res)=>{
 
     }
     if(productFound){
-      productManager.updateProduct(productFound.id, newProduct);
+      await productManager.updateProduct(productFound.id, newProduct);
       
       return res.status(201).json({
         status: "success",
@@ -142,21 +142,28 @@ productsRouter.delete("/:pid", async (req, res)=> {
   try{
     const solicitedID = req.params.pid; 
     const productFound = await productManager.deleteProduct(parseInt(solicitedID))
-      
-      return res.status(200).json({
-        status: "success",
-        msg: "the products has been deleted",
-        data: productFound,
+
+    if(!productFound){
+      return  res.status(404).json({
+        status: "error",
+        msg: "Product does not exist",
       });
-    
+
+    }
+    return res.status(200).json({
+      status: "success",
+      msg: "the products has been deleted",
+      data: productFound,
+    });
+  
+      
   }
   catch(err){
-    return res.status(404).json({
+    return  res.status(404).json({
       status: "error",
-      msg: "product does not exist",
-    });
-  }
-})
+      msg: "Product does not exist",
+    })};
+  })
 
 productsRouter.get("/:pid/test", async (req, res) => {
   try{
